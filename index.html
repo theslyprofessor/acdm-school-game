@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACDM School Explorer - SWC</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Phaser 3 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+</head>
+<body>
+    <div id="game-container">
+        <div id="game-header">
+            <h1>ACDM School Explorer</h1>
+            <p>Explore the campus and discover degree programs!</p>
+        </div>
+        <div id="game"></div>
+        <div id="game-footer">
+            <p>Controls: Arrow Keys/WASD to move | E/Space to interact | ESC to close</p>
+        </div>
+    </div>
+
+    <!-- Modal for program information -->
+    <div id="program-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modal-title"></h2>
+            <div id="modal-badges"></div>
+            <p id="modal-description"></p>
+            <div id="modal-video"></div>
+            <a id="modal-link" href="#" target="_blank" class="learn-more-btn">Learn More</a>
+        </div>
+    </div>
+
+    <!-- Game Scripts -->
+    <script src="js/data/programs.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
