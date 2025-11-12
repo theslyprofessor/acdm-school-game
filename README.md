@@ -1,64 +1,94 @@
 # ACDM School Explorer
 
-A Legend of Zelda-style browser game where students explore the Southwestern College School of Arts, Communication, Design & Media (ACDM) campus and learn about different degree programs.
+**An interactive educational game for Southwestern College's School of Arts, Communication, Design & Media (ACDM)**
 
-## 🎮 Game Concept
+![Game Screenshot](screenshot.png)
 
-Navigate a pixel art version of the SWC Chula Vista campus, enter buildings, and interact with NPCs to discover information about 12+ academic programs. Features a Mario-style world map for campus navigation and individual "levels" for each building.
+## 🎮 About
 
-## 🎯 Features
+ACDM School Explorer is a Dragon Quest-style top-down exploration game that helps students learn about the 12 academic programs offered by SWC's ACDM school. Players can:
 
-- **World Map**: Navigate the SWC campus with a top-down pixel art overworld
-- **Interactive Buildings**: Enter Building 87 (ACDM) to explore 12 program areas
-- **Billboard NPCs**: Character sprites hold up information about programs
-- **Video Integration**: Modal popups with program videos and detailed information
-- **Degree Information**: Learn about Associate degrees and Certificates
+- Navigate a virtual SWC campus
+- Explore Building 500 (ACDM) with 5 departments
+- Enter individual program rooms to learn about each program
+- View degree and certificate options (clickable links to catalog)
+- Contact faculty and program leads
+- Discover educational resources like [midimaze.com](https://midimaze.com)
 
-## 🏛️ ACDM Programs Featured
+## 🏫 Programs Featured
 
-1. Architecture
-2. Art
-3. Communication
-4. Computer Aided Design & Drafting
-5. Dance
-6. Film, Television & Media Arts
-7. Graphic Design
-8. Journalism
-9. Liberal Arts Emphasis Degrees
-10. Music
-11. Recording Arts Technology
-12. Theatre Arts
+### Visual Arts Department
+- Architecture (5 awards)
+- Art (5 awards)
 
-## 🛠️ Tech Stack
+### Communication Department
+- Communication (2 awards)
+- Film, Television & Media Arts (3 awards)
+- Journalism (2 awards)
+- Recording Arts & Technology (2 awards)
 
-- HTML5 Canvas
-- JavaScript (Phaser.js game engine)
-- CSS3
-- Pixel art assets
+### Performing Arts Department
+- Dance (1 award)
+- Music (6 awards)
+- Theatre Arts (3 awards)
+
+### Applied Technologies Department
+- Computer Aided Design & Drafting (3 awards)
+
+### Humanities Department
+- Liberal Arts Areas of Emphasis (3 awards)
+- Mexican American Studies (1 award)
+
+## 🎵 Features
+
+- **Individual Program Rooms**: Each program has its own dedicated room
+- **Interactive Degree Icons**: Click to open specific catalog pages
+- **Faculty Contacts**: Contact program leads, department chairs, dean, and counselors
+- **Music System**: Dynamic chiptune music for campus, school, and program rooms
+- **Custom Backgrounds**: Recording Arts features a real studio photo
+- **Easter Eggs**: Empty vending machines (classic college experience!)
+
+## 🕹️ Controls
+
+- **Arrow Keys / WASD**: Move character
+- **E / Space**: Interact with NPCs, enter rooms, view information
+- **M**: Toggle music on/off
+- **ESC**: Close modals or exit rooms (back to previous scene)
+
+## 🛠️ Technology Stack
+
+- **Phaser 3**: Game engine for sprite rendering and physics
+- **Vanilla JavaScript**: Core game logic
+- **HTML5 Canvas**: Rendering
+- **Web Audio API**: Chiptune music generation
+- **CSS3**: UI styling and modals
 
 ## 📁 Project Structure
 
 ```
 acdm-school-game/
-├── index.html
+├── index.html              # Main HTML entry point
 ├── css/
-│   └── style.css
+│   └── style.css          # Game and UI styling
 ├── js/
-│   ├── game.js
-│   ├── player.js
-│   ├── world.js
-│   ├── collision.js
-│   ├── ui.js
+│   ├── game.js            # Main game loop and scene management
+│   ├── sprites.js         # Sprite generation (characters, icons, buildings)
+│   ├── music.js           # Music manager and chiptune sounds
+│   ├── ui.js              # Modal controller for information display
 │   └── data/
-│       └── programs.js
+│       ├── schools.js     # School/department/program data structure
+│       └── faculty.json   # Faculty contact information
 ├── assets/
-│   ├── sprites/
-│   └── audio/
-├── PLANNING.md
-└── README.md
+│   ├── backgrounds/       # Custom room backgrounds
+│   ├── sprites/           # (Generated programmatically)
+│   └── audio/             # Music files (optional)
+└── scripts/
+    └── scrape_faculty.py  # Faculty directory scraper
 ```
 
 ## 🚀 Getting Started
+
+### Local Development
 
 1. Clone the repository:
 ```bash
@@ -66,50 +96,73 @@ git clone https://github.com/theslyprofessor/acdm-school-game.git
 cd acdm-school-game
 ```
 
-2. Open `index.html` in your browser or use a local server:
+2. Start a local web server:
 ```bash
-# Using Python 3
+# Python 3
 python3 -m http.server 8000
 
-# Using Node.js
-npx http-server
+# Or using Node.js
+npx http-server -p 8000
+
+# Or using Bun
+bun x http-server -p 8000
 ```
 
-3. Navigate to `http://localhost:8000`
+3. Open in browser:
+```
+http://localhost:8000
+```
 
-## 🎮 Controls
+### Deployment
 
-- **Arrow Keys / WASD**: Move character
-- **E / Space**: Interact with NPCs and objects
-- **ESC**: Close modals and return to previous screen
+The game is a static web application and can be deployed to:
+- GitHub Pages
+- Hostinger Hosting
+- Netlify
+- Vercel
+- Any static hosting service
 
-## 📅 Development Roadmap
+## 👥 Faculty Contacts
 
-- [x] Planning document
-- [ ] Project setup
-- [ ] World map implementation
-- [ ] Player movement system
-- [ ] Building entry/exit mechanics
-- [ ] Billboard NPC system
-- [ ] Video modal interface
-- [ ] All 12 program rooms
-- [ ] Asset creation
-- [ ] Deploy to GitHub Pages
+- **Dean**: Diana Arredondo
+- **Program Leads**: Contact information for each program
+- **Department Chairs**: Available in department view
+- **Counselors**: School counselor contact
 
-## 🤝 Contributing
+## 📝 Development
 
-This is an educational project for Southwestern College. Contributions and suggestions are welcome!
+### Adding New Programs
+
+1. Update `js/data/schools.js` with program information
+2. Add program lead contact information
+3. Create degree/certificate data with catalog URLs
+4. (Optional) Add custom background image to `assets/backgrounds/`
+
+### Adding Custom Backgrounds
+
+1. Save image as `assets/backgrounds/[program-id].jpg`
+2. Update `preload()` in `game.js` to load the image
+3. Update `createProgramRoom()` to display for that program
+
+See `assets/backgrounds/README.md` for detailed instructions.
+
+## 🎨 Credits
+
+**Created by**: Nakul Tiruviluamala
+**For**: Southwestern College ACDM
+**Built with**: Phaser 3, JavaScript, lots of coffee ☕
 
 ## 📄 License
 
-MIT License
+This project is for educational purposes at Southwestern College.
 
 ## 🔗 Links
 
-- [Southwestern College](https://www.swccd.edu/)
-- [ACDM Programs](https://www.swccd.edu/academics/schools/arts-communication-design-media/)
-- [Campus Map](https://www.swccd.edu/about-swc/campus-maps-and-directions/)
+- [SWC ACDM Programs](https://www.swccd.edu/academics/schools-centers/arts-communication-design-media/)
+- [Program Catalog](https://catalog.swccd.edu/)
+- [midimaze Educational Resource](https://midimaze.com)
+- [Faculty Directory](https://www.swccd.edu/about-swc/get-in-touch/department-directory.aspx)
 
 ---
 
-Built with ❤️ for SWC students
+Made with 💙 for SWC Students

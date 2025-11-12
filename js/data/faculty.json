@@ -1,0 +1,129 @@
+{
+  "dean": {
+    "name": "Diana Arredondo",
+    "title": "Dean of Arts, Communication, Design & Media",
+    "contact_url": null
+  },
+  "departments": {
+    "visual_arts": {
+      "chair": {
+        "name": "TBD",
+        "contact_url": null
+      },
+      "programs": {
+        "architecture": {
+          "lead": {
+            "name": "TBD",
+            "contact_url": null
+          }
+        },
+        "art": {
+          "lead": {
+            "name": "TBD",
+            "contact_url": null
+          }
+        }
+      }
+    },
+    "communication": {
+      "chair": {
+        "name": "TBD",
+        "contact_url": null
+      },
+      "programs": {
+        "communication": {
+          "lead": {
+            "name": "TBD",
+            "contact_url": null
+          }
+        },
+        "film": {
+          "lead": {
+            "name": "TBD",
+            "contact_url": null
+          }
+        },
+        "journalism": {
+          "lead": {
+            "name": "TBD",
+            "contact_url": null
+          }
+        },
+        "recording_arts": {
+          "lead": {
+            "name": "Nakul Tiruviluamala",
+            "title": "Professor, Recording Arts & Technology",
+            "contact_url": "https://go.swccd.edu/contact/person/8a27ea911b4a741036c0a685624bcb5a"
+          }
+        }
+      }
+    },
+    "performing_arts": {
+      "chair": {
+        "name": "TBD",
+        "contact_url": null
+      },
+      "programs": {
+        "dance": {
+          "lead": {
+            "name": "TBD",
+            "contact_url": null
+          }
+        },
+        "music": {
+          "lead": {
+            "name": "TBD",
+            "contact_url": null
+          }
+        },
+        "theatre": {
+          "lead": {
+            "name": "TBD",
+            "contact_url": null
+          }
+        }
+      }
+    },
+    "applied_technologies": {
+      "chair": {
+        "name": "TBD",
+        "contact_url": null
+      },
+      "programs": {
+        "cad": {
+          "lead": {
+            "name": "TBD",
+            "contact_url": null
+          }
+        }
+      }
+    },
+    "humanities": {
+      "chair": {
+        "name": "TBD",
+        "contact_url": null
+      },
+      "programs": {
+        "liberal_arts": {
+          "lead": {
+            "name": "TBD",
+            "contact_url": null
+          }
+        },
+        "mexican_american_studies": {
+          "lead": {
+            "name": "TBD",
+            "contact_url": null
+          }
+        }
+      }
+    }
+  },
+  "counselors": [
+    {
+      "name": "TBD",
+      "title": "ACDM Counselor",
+      "contact_url": null
+    }
+  ]
+}

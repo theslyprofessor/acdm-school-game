@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACDM School Explorer - Southwestern College</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="game-title">
+            <h1>ACDM School Explorer</h1>
+            <p>Explore the School of Arts, Communication, Design & Media</p>
+        </div>
+        <div id="game-wrapper">
+            <div id="game"></div>
+            <div id="character-display">
+                <div id="character-portrait"></div>
+                <div id="character-name">Student</div>
+            </div>
+        </div>
+        <div id="controls">
+            <p><strong>Controls:</strong> Arrow Keys / WASD to move | E / Space to interact | ESC to exit/close | M to toggle music</p>
+        </div>
+    </div>
+
+    <!-- Modal for program information -->
+    <div id="program-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modal-title"></h2>
+            <div id="modal-badges"></div>
+            <p id="modal-description"></p>
+            <div id="modal-video"></div>
+            <a id="modal-link" href="#" target="_blank" class="learn-more-btn">Learn More</a>
+        </div>
+    </div>
+
+    <!-- Load Phaser from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+    
+    <!-- Load game modules -->
+    <script src="js/data/schools.js"></script>
+    <script src="js/sprites.js"></script>
+    <script src="js/music.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
