@@ -132,12 +132,31 @@ class UIController {
                 `Contact information is being updated.\n` +
                 `Please check the SWC department directory for current contact details.`;
         } else {
-            // Show specific faculty contact
+            // Show specific faculty contact with full details
             document.getElementById('modal-title').textContent = lead.name;
-            document.getElementById('modal-description').textContent = 
-                `${lead.title}\n\n` +
-                `Program: ${program.name}\n\n` +
-                `Click "Contact Faculty" below to send a message or view full contact details.`;
+            
+            let description = `${lead.title}\n`;
+            if (lead.department) {
+                description += `${lead.department}\n\n`;
+            } else {
+                description += `Program: ${program.name}\n\n`;
+            }
+            
+            if (lead.email) {
+                description += `📧 Email: ${lead.email}\n`;
+            }
+            if (lead.phone) {
+                description += `📞 Phone: ${lead.phone}\n`;
+            }
+            if (lead.office) {
+                description += `🏢 Office: ${lead.office}\n\n`;
+            } else {
+                description += `\n`;
+            }
+            
+            description += `Click "Send Email to ${lead.name.split(' ')[0]}" below to contact directly.`;
+            
+            document.getElementById('modal-description').textContent = description;
         }
         
         // Clear badges
@@ -157,7 +176,8 @@ class UIController {
         const learnMoreLink = document.getElementById('modal-link');
         if (lead && lead.contactUrl) {
             learnMoreLink.href = lead.contactUrl;
-            learnMoreLink.textContent = 'Contact Faculty';
+            const firstName = lead.name.split(' ')[0];
+            learnMoreLink.textContent = `Send Email to ${firstName}`;
         } else {
             learnMoreLink.href = 'https://www.swccd.edu/about-swc/get-in-touch/department-directory.aspx';
             learnMoreLink.textContent = 'View Department Directory';
@@ -355,7 +375,9 @@ class UIController {
             `• Studio techniques and technology\n` +
             `• Project guidance and feedback\n` +
             `• Exam preparation and study strategies\n\n` +
-            `Stop by during tutoring hours or email to schedule an appointment!`;
+            (tutor.tutoringUrl ? 
+                `Visit the tutoring page for schedule and more information!` :
+                `Stop by during tutoring hours or email to schedule an appointment!`);
         
         const badgesContainer = document.getElementById('modal-badges');
         badgesContainer.innerHTML = '';
@@ -369,8 +391,13 @@ class UIController {
         document.getElementById('modal-video').innerHTML = '';
         
         const learnMoreLink = document.getElementById('modal-link');
-        learnMoreLink.href = `mailto:${tutor.email}`;
-        learnMoreLink.textContent = 'Send Email to Alex';
+        if (tutor.tutoringUrl) {
+            learnMoreLink.href = tutor.tutoringUrl;
+            learnMoreLink.textContent = 'View Tutoring Schedule & Info';
+        } else {
+            learnMoreLink.href = `mailto:${tutor.email}`;
+            learnMoreLink.textContent = 'Send Email to Alex';
+        }
         learnMoreLink.style.display = 'inline-block';
         
         this.modal.classList.remove('hidden');

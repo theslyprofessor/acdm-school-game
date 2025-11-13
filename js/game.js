@@ -767,7 +767,8 @@ function createProgramRoom(program, departmentName) {
             title: 'RA&T Tutor',
             email: 'avargas2@swccd.edu',
             room: '84-102',
-            program: 'Recording Arts & Technology'
+            program: 'Recording Arts & Technology',
+            tutoringUrl: 'https://midimaze.com/Academic+Resources/College+Resources/RA%26T+Tutoring'
         });
         npcs.push(tutorIcon);
         

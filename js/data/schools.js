@@ -123,7 +123,11 @@ const SCHOOLS = {
                         awards: 2,
                         programLead: {
                             name: 'Nakul Tiruviluamala',
-                            title: 'Professor, Recording Arts & Technology',
+                            title: 'Assistant Professor',
+                            email: 'ntiruviluamala@swccd.edu',
+                            phone: '(619) 421-6700 x5377',
+                            office: '84-110',
+                            department: 'School of Arts, Communication, Design & Media',
                             contactUrl: 'https://go.swccd.edu/contact/person/8a27ea911b4a741036c0a685624bcb5a'
                         },
                         degrees: [
