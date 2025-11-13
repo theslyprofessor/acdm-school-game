@@ -8,13 +8,36 @@ const SCHOOLS = {
         building: 'ACDM School',
         dean: {
             name: 'Diana Arredondo',
-            title: 'Dean of Arts, Communication, Design & Media',
-            contactUrl: null // TBD - needs to be found in directory
+            title: 'Interim Dean',
+            email: 'darredondo@swccd.edu',
+            phone: '(619) 482-6371',
+            office: '87-110',
+            contactUrl: 'https://www.swccd.edu/_showcase/directory/person/diana-arredondo/'
         },
         counselor: {
-            name: 'TBD',
-            title: 'ACDM School Counselor',
-            contactUrl: null // TBD
+            name: 'Adriana Garibay',
+            title: 'Counselor',
+            email: 'agaribay@swccd.edu',
+            phone: '(619) 421-6700 x5434',
+            office: '68-205D',
+            contactUrl: 'https://www.swccd.edu/_showcase/directory/person/adriana-garibay/'
+        },
+        successCoach: {
+            name: 'Omar Alvarez Espinosa',
+            title: 'Field of Study Success Coach',
+            email: 'oalvarez-espinosa@swccd.edu',
+            phone: '(619) 421-6700 x5136',
+            office: '68-206',
+            contactUrl: 'https://www.swccd.edu/_showcase/directory/person/omar-alvarez-espinosa/'
+        },
+        receptionist: {
+            name: 'Ewa Zwierski',
+            title: 'Administrative Secretary II',
+            email: 'ezwierski@swccd.edu',
+            phone: '(619) 482-6441',
+            office: '87-109A',
+            department: 'School of Arts, Communication, Design & Media',
+            contactUrl: 'https://www.swccd.edu/_showcase/directory/person/ewa-zwierski/'
         },
         departments: {
             visualArts: {

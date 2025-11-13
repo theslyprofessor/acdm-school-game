@@ -270,17 +270,17 @@ function createBuilding87Interior() {
         padding: { x: 10, y: 5 }
     }).setOrigin(0.5);
     
-    // Add Counselor, Receptionist, and Dean in a row at top
+    // Add staff contacts in a row at top (4 people)
     const contactGroup = this.physics.add.staticGroup();
     
     // Counselor (left)
-    const counselorIcon = contactGroup.create(200, 50, 'chair-icon');
+    const counselorIcon = contactGroup.create(160, 50, 'chair-icon');
     counselorIcon.setData('type', 'counselor-contact');
     counselorIcon.setData('school', SCHOOLS.acdm);
     npcs.push(counselorIcon);
     
-    this.add.text(200, 85, 'Counselor', {
-        fontSize: '10px',
+    this.add.text(160, 85, 'Counselor\nAdriana Garibay', {
+        fontSize: '9px',
         fontFamily: 'Arial',
         color: '#ffff00',
         align: 'center',
@@ -290,14 +290,31 @@ function createBuilding87Interior() {
         padding: { x: 5, y: 3 }
     }).setOrigin(0.5);
     
-    // Receptionist (center)
-    const receptionistIcon = contactGroup.create(400, 50, 'chair-icon');
+    // Success Coach (center-left)
+    const coachIcon = contactGroup.create(320, 50, 'chair-icon');
+    coachIcon.setData('type', 'coach-contact');
+    coachIcon.setData('school', SCHOOLS.acdm);
+    npcs.push(coachIcon);
+    
+    this.add.text(320, 85, 'Success Coach\nOmar Alvarez', {
+        fontSize: '9px',
+        fontFamily: 'Arial',
+        color: '#ffff00',
+        align: 'center',
+        stroke: '#000000',
+        strokeThickness: 2,
+        backgroundColor: 'rgba(0,0,0,0.7)',
+        padding: { x: 5, y: 3 }
+    }).setOrigin(0.5);
+    
+    // Receptionist (center-right)
+    const receptionistIcon = contactGroup.create(480, 50, 'chair-icon');
     receptionistIcon.setData('type', 'receptionist-contact');
     receptionistIcon.setData('school', SCHOOLS.acdm);
     npcs.push(receptionistIcon);
     
-    this.add.text(400, 85, 'Receptionist', {
-        fontSize: '10px',
+    this.add.text(480, 85, 'Receptionist\nEwa Zwierski', {
+        fontSize: '9px',
         fontFamily: 'Arial',
         color: '#ffff00',
         align: 'center',
@@ -308,13 +325,13 @@ function createBuilding87Interior() {
     }).setOrigin(0.5);
     
     // Dean (right)
-    const deanIcon = contactGroup.create(600, 50, 'chair-icon');
+    const deanIcon = contactGroup.create(640, 50, 'chair-icon');
     deanIcon.setData('type', 'dean-contact');
     deanIcon.setData('school', SCHOOLS.acdm);
     npcs.push(deanIcon);
     
-    this.add.text(600, 85, 'Dean\nDiana Arredondo', {
-        fontSize: '10px',
+    this.add.text(640, 85, 'Dean\nDiana Arredondo', {
+        fontSize: '9px',
         fontFamily: 'Arial',
         color: '#ffff00',
         align: 'center',
@@ -839,6 +856,8 @@ function handleBuilding87Interaction() {
             interactionPrompt.setText('Press E - Contact Dean');
         } else if (type === 'counselor-contact') {
             interactionPrompt.setText('Press E - Contact Counselor');
+        } else if (type === 'coach-contact') {
+            interactionPrompt.setText('Press E - Contact Success Coach');
         } else if (type === 'receptionist-contact') {
             interactionPrompt.setText('Press E - Contact Receptionist');
         } else {
@@ -859,6 +878,11 @@ function handleBuilding87Interaction() {
                 const school = nearNPC.getData('school');
                 if (school && uiController) {
                     uiController.showCounselorContact(school);
+                }
+            } else if (type === 'coach-contact') {
+                const school = nearNPC.getData('school');
+                if (school && uiController) {
+                    uiController.showSuccessCoachContact(school);
                 }
             } else if (type === 'receptionist-contact') {
                 const school = nearNPC.getData('school');

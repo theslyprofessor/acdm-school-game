@@ -206,14 +206,14 @@ class UIController {
     showDeanContact(school) {
         const dean = school.dean;
         
-        document.getElementById('modal-title').textContent = dean.name || 'School Dean';
+        document.getElementById('modal-title').textContent = dean.name;
         document.getElementById('modal-description').textContent = 
             `${dean.title}\n` +
             `${school.name}\n\n` +
-            `The Dean oversees all academic programs, faculty, and operations within the school.\n\n` +
-            (dean.contactUrl ? 
-                'Click "Contact Dean" below to send a message or view contact details.' :
-                'Contact information is being updated. Please check the department directory.');
+            `📧 Email: ${dean.email}\n` +
+            `📞 Phone: ${dean.phone}\n` +
+            `🏢 Office: ${dean.office}\n\n` +
+            `The Dean oversees all academic programs, faculty, and operations within the school.`;
         
         const badgesContainer = document.getElementById('modal-badges');
         badgesContainer.innerHTML = '';
@@ -221,14 +221,14 @@ class UIController {
         const badge = document.createElement('span');
         badge.className = 'badge';
         badge.style.background = '#8e44ad';
-        badge.textContent = '🎓 School Dean';
+        badge.textContent = '🎓 Interim Dean';
         badgesContainer.appendChild(badge);
         
         document.getElementById('modal-video').innerHTML = '';
         
         const learnMoreLink = document.getElementById('modal-link');
-        learnMoreLink.href = dean.contactUrl || 'https://www.swccd.edu/about-swc/get-in-touch/department-directory.aspx';
-        learnMoreLink.textContent = dean.contactUrl ? 'Contact Dean' : 'View Directory';
+        learnMoreLink.href = dean.contactUrl;
+        learnMoreLink.textContent = 'Send Email to Diana';
         learnMoreLink.style.display = 'inline-block';
         
         this.modal.classList.remove('hidden');
@@ -238,18 +238,18 @@ class UIController {
     showCounselorContact(school) {
         const counselor = school.counselor;
         
-        document.getElementById('modal-title').textContent = counselor.name || 'School Counselor';
+        document.getElementById('modal-title').textContent = counselor.name;
         document.getElementById('modal-description').textContent = 
             `${counselor.title}\n` +
-            `${school.name}\n\n` +
-            `School counselors help with:\n` +
+            `School of Counseling & Student Support Programs\n\n` +
+            `📧 Email: ${counselor.email}\n` +
+            `📞 Phone: ${counselor.phone}\n` +
+            `🏢 Office: ${counselor.office}\n\n` +
+            `Counselors help with:\n` +
             `• Academic planning and course selection\n` +
             `• Transfer guidance\n` +
             `• Career exploration\n` +
-            `• Educational goals and degree planning\n\n` +
-            (counselor.contactUrl ? 
-                'Click "Contact Counselor" below to schedule an appointment.' :
-                'Contact information is being updated. Please visit Counseling Services.');
+            `• Educational goals and degree planning`;
         
         const badgesContainer = document.getElementById('modal-badges');
         badgesContainer.innerHTML = '';
@@ -263,8 +263,44 @@ class UIController {
         document.getElementById('modal-video').innerHTML = '';
         
         const learnMoreLink = document.getElementById('modal-link');
-        learnMoreLink.href = counselor.contactUrl || 'https://www.swccd.edu/student-support/counseling/';
-        learnMoreLink.textContent = counselor.contactUrl ? 'Contact Counselor' : 'Counseling Services';
+        learnMoreLink.href = counselor.contactUrl;
+        learnMoreLink.textContent = 'Send Email to Adriana';
+        learnMoreLink.style.display = 'inline-block';
+        
+        this.modal.classList.remove('hidden');
+        this.modal.classList.add('active');
+    }
+    
+    showSuccessCoachContact(school) {
+        const coach = school.successCoach;
+        
+        document.getElementById('modal-title').textContent = coach.name;
+        document.getElementById('modal-description').textContent = 
+            `${coach.title}\n` +
+            `School of Counseling & Student Support Programs\n\n` +
+            `📧 Email: ${coach.email}\n` +
+            `📞 Phone: ${coach.phone}\n` +
+            `🏢 Office: ${coach.office}\n\n` +
+            `Success Coaches help students:\n` +
+            `• Navigate their field of study\n` +
+            `• Connect with resources and support\n` +
+            `• Achieve academic success\n` +
+            `• Plan their educational pathway`;
+        
+        const badgesContainer = document.getElementById('modal-badges');
+        badgesContainer.innerHTML = '';
+        
+        const badge = document.createElement('span');
+        badge.className = 'badge';
+        badge.style.background = '#e67e22';
+        badge.textContent = '🎯 Success Coach';
+        badgesContainer.appendChild(badge);
+        
+        document.getElementById('modal-video').innerHTML = '';
+        
+        const learnMoreLink = document.getElementById('modal-link');
+        learnMoreLink.href = coach.contactUrl;
+        learnMoreLink.textContent = 'Send Email to Omar';
         learnMoreLink.style.display = 'inline-block';
         
         this.modal.classList.remove('hidden');
@@ -272,16 +308,20 @@ class UIController {
     }
     
     showReceptionistContact(school) {
-        document.getElementById('modal-title').textContent = 'ACDM Receptionist';
+        const receptionist = school.receptionist;
+        
+        document.getElementById('modal-title').textContent = receptionist.name;
         document.getElementById('modal-description').textContent = 
-            `Front Desk Reception\n` +
-            `${school.name}\n\n` +
+            `${receptionist.title}\n` +
+            `${receptionist.department}\n\n` +
+            `📧 Email: ${receptionist.email}\n` +
+            `📞 Phone: ${receptionist.phone}\n` +
+            `🏢 Office: ${receptionist.office}\n\n` +
             `The receptionist can help with:\n` +
             `• General information about ACDM programs\n` +
             `• Directions to faculty offices and classrooms\n` +
             `• Scheduling appointments\n` +
-            `• Answering questions about the school\n\n` +
-            `Stop by the front desk for assistance!`;
+            `• Answering questions about the school`;
         
         const badgesContainer = document.getElementById('modal-badges');
         badgesContainer.innerHTML = '';
@@ -295,8 +335,8 @@ class UIController {
         document.getElementById('modal-video').innerHTML = '';
         
         const learnMoreLink = document.getElementById('modal-link');
-        learnMoreLink.href = 'https://www.swccd.edu/about-swc/get-in-touch/department-directory.aspx';
-        learnMoreLink.textContent = 'Contact Directory';
+        learnMoreLink.href = receptionist.contactUrl;
+        learnMoreLink.textContent = 'Send Email to Ewa';
         learnMoreLink.style.display = 'inline-block';
         
         this.modal.classList.remove('hidden');
