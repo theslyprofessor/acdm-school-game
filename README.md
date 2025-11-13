@@ -9,7 +9,7 @@
 ACDM School Explorer is a Dragon Quest-style top-down exploration game that helps students learn about the 12 academic programs offered by SWC's ACDM school. Players can:
 
 - Navigate a virtual SWC campus
-- Explore Building 500 (ACDM) with 5 departments
+- Explore the ACDM school with 5 departments
 - Enter individual program rooms to learn about each program
 - View degree and certificate options (clickable links to catalog)
 - Contact faculty and program leads
