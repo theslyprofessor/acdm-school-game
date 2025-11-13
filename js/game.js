@@ -168,14 +168,14 @@ function createOverworld() {
         strokeThickness: 4
     }).setOrigin(0.5);
     
-    // Create Building 500 (ACDM School)
+    // Create ACDM School building
     buildings = this.physics.add.staticGroup();
-    const building500 = buildings.create(400, 250, 'building-sprite');
-    building500.setData('name', 'School of ACDM');
-    building500.setData('id', 'acdm');
+    const acdmBuilding = buildings.create(400, 250, 'building-sprite');
+    acdmBuilding.setData('name', 'School of ACDM');
+    acdmBuilding.setData('id', 'acdm');
     
     // Add building label
-    this.add.text(400, 350, 'Building 500\nSchool of Arts, Communication,\nDesign & Media', {
+    this.add.text(400, 350, 'School of Arts, Communication,\nDesign & Media', {
         fontSize: '14px',
         fontFamily: 'Arial',
         color: '#ffffff',

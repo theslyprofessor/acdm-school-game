@@ -176,7 +176,7 @@ class UIController {
             `For questions about the ${programName} program or ${departmentName} department:\n\n` +
             `📧 Email: Contact through the SWC directory\n` +
             `📞 Phone: Available via department office\n` +
-            `🏢 Office: Building 500 - ACDM\n\n` +
+            `🏢 Office: ACDM School\n\n` +
             `Visit the department directory for current contact information.`;
         
         // Clear badges

@@ -5,7 +5,7 @@ const SCHOOLS = {
     acdm: {
         id: 'acdm',
         name: 'Arts, Communication, Design & Media',
-        building: 'Building 500',
+        building: 'ACDM School',
         dean: {
             name: 'Diana Arredondo',
             title: 'Dean of Arts, Communication, Design & Media',
