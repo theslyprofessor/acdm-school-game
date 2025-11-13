@@ -336,7 +336,7 @@ class UIController {
         
         const learnMoreLink = document.getElementById('modal-link');
         learnMoreLink.href = receptionist.contactUrl;
-        learnMoreLink.textContent = 'Send Email to Ewa';
+        learnMoreLink.textContent = 'Send Email to Eileen';
         learnMoreLink.style.display = 'inline-block';
         
         this.modal.classList.remove('hidden');

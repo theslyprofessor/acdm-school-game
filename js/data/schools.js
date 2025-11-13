@@ -31,7 +31,7 @@ const SCHOOLS = {
             contactUrl: 'https://www.swccd.edu/_showcase/directory/person/omar-alvarez-espinosa/'
         },
         receptionist: {
-            name: 'Ewa Zwierski',
+            name: 'Eileen Zwiereski',
             title: 'Administrative Secretary II',
             email: 'ezwierski@swccd.edu',
             phone: '(619) 482-6441',

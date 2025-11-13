@@ -313,7 +313,7 @@ function createBuilding87Interior() {
     receptionistIcon.setData('school', SCHOOLS.acdm);
     npcs.push(receptionistIcon);
     
-    this.add.text(480, 85, 'Receptionist\nEwa Zwierski', {
+    this.add.text(480, 85, 'Receptionist\nEileen Zwiereski', {
         fontSize: '9px',
         fontFamily: 'Arial',
         color: '#ffff00',
