@@ -271,6 +271,38 @@ class UIController {
         this.modal.classList.add('active');
     }
     
+    showReceptionistContact(school) {
+        document.getElementById('modal-title').textContent = 'ACDM Receptionist';
+        document.getElementById('modal-description').textContent = 
+            `Front Desk Reception\n` +
+            `${school.name}\n\n` +
+            `The receptionist can help with:\n` +
+            `• General information about ACDM programs\n` +
+            `• Directions to faculty offices and classrooms\n` +
+            `• Scheduling appointments\n` +
+            `• Answering questions about the school\n\n` +
+            `Stop by the front desk for assistance!`;
+        
+        const badgesContainer = document.getElementById('modal-badges');
+        badgesContainer.innerHTML = '';
+        
+        const badge = document.createElement('span');
+        badge.className = 'badge';
+        badge.style.background = '#3498db';
+        badge.textContent = '📞 Front Desk';
+        badgesContainer.appendChild(badge);
+        
+        document.getElementById('modal-video').innerHTML = '';
+        
+        const learnMoreLink = document.getElementById('modal-link');
+        learnMoreLink.href = 'https://www.swccd.edu/about-swc/get-in-touch/department-directory.aspx';
+        learnMoreLink.textContent = 'Contact Directory';
+        learnMoreLink.style.display = 'inline-block';
+        
+        this.modal.classList.remove('hidden');
+        this.modal.classList.add('active');
+    }
+    
     showVendingMachineMessage(message) {
         // Set modal content for empty vending machine
         document.getElementById('modal-title').textContent = '🥤 Vending Machine';

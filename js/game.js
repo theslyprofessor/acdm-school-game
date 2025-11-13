@@ -229,20 +229,20 @@ function createBuilding87Interior() {
     // Create walls
     const walls = this.physics.add.staticGroup();
     
-    // Top wall
-    for (let x = 0; x < config.width; x += 16) {
-        const wall = walls.create(x, 0, 'wall');
-        wall.setOrigin(0, 0);
-        wall.body.setSize(16, 16);
-    }
-    
-    // Bottom wall (with exit gap in middle)
+    // Top wall (with exit gap in middle)
     for (let x = 0; x < config.width; x += 16) {
         if (x < 360 || x > 440) {
-            const wall = walls.create(x, config.height - 16, 'wall');
+            const wall = walls.create(x, 0, 'wall');
             wall.setOrigin(0, 0);
             wall.body.setSize(16, 16);
         }
+    }
+    
+    // Bottom wall
+    for (let x = 0; x < config.width; x += 16) {
+        const wall = walls.create(x, config.height - 16, 'wall');
+        wall.setOrigin(0, 0);
+        wall.body.setSize(16, 16);
     }
     
     // Left wall
@@ -260,7 +260,7 @@ function createBuilding87Interior() {
     }
     
     // Add school title
-    this.add.text(400, 30, 'School of Arts, Communication, Design & Media', {
+    this.add.text(400, 540, 'School of Arts, Communication, Design & Media', {
         fontSize: '18px',
         fontFamily: 'Arial',
         color: '#ffffff',
@@ -270,16 +270,16 @@ function createBuilding87Interior() {
         padding: { x: 10, y: 5 }
     }).setOrigin(0.5);
     
-    // Add Dean and Counselor contacts (top left and top right)
+    // Add Counselor, Receptionist, and Dean in a row at top
     const contactGroup = this.physics.add.staticGroup();
     
-    // Dean contact (top right)
-    const deanIcon = contactGroup.create(config.width - 60, 70, 'chair-icon');
-    deanIcon.setData('type', 'dean-contact');
-    deanIcon.setData('school', SCHOOLS.acdm);
-    npcs.push(deanIcon);
+    // Counselor (left)
+    const counselorIcon = contactGroup.create(200, 50, 'chair-icon');
+    counselorIcon.setData('type', 'counselor-contact');
+    counselorIcon.setData('school', SCHOOLS.acdm);
+    npcs.push(counselorIcon);
     
-    this.add.text(config.width - 60, 105, 'Dean\nDiana Arredondo', {
+    this.add.text(200, 85, 'Counselor', {
         fontSize: '10px',
         fontFamily: 'Arial',
         color: '#ffff00',
@@ -290,13 +290,30 @@ function createBuilding87Interior() {
         padding: { x: 5, y: 3 }
     }).setOrigin(0.5);
     
-    // Counselor contact (top left)
-    const counselorIcon = contactGroup.create(60, 70, 'chair-icon');
-    counselorIcon.setData('type', 'counselor-contact');
-    counselorIcon.setData('school', SCHOOLS.acdm);
-    npcs.push(counselorIcon);
+    // Receptionist (center)
+    const receptionistIcon = contactGroup.create(400, 50, 'chair-icon');
+    receptionistIcon.setData('type', 'receptionist-contact');
+    receptionistIcon.setData('school', SCHOOLS.acdm);
+    npcs.push(receptionistIcon);
     
-    this.add.text(60, 105, 'Counselor', {
+    this.add.text(400, 85, 'Receptionist', {
+        fontSize: '10px',
+        fontFamily: 'Arial',
+        color: '#ffff00',
+        align: 'center',
+        stroke: '#000000',
+        strokeThickness: 2,
+        backgroundColor: 'rgba(0,0,0,0.7)',
+        padding: { x: 5, y: 3 }
+    }).setOrigin(0.5);
+    
+    // Dean (right)
+    const deanIcon = contactGroup.create(600, 50, 'chair-icon');
+    deanIcon.setData('type', 'dean-contact');
+    deanIcon.setData('school', SCHOOLS.acdm);
+    npcs.push(deanIcon);
+    
+    this.add.text(600, 85, 'Dean\nDiana Arredondo', {
         fontSize: '10px',
         fontFamily: 'Arial',
         color: '#ffff00',
@@ -314,7 +331,7 @@ function createBuilding87Interior() {
     // Layout departments in columns (5 departments = 5 columns)
     const columnWidth = 150;
     const startX = 80;
-    const startY = 80;
+    const startY = 130;
     
     departments.forEach((dept, colIndex) => {
         const columnX = startX + (colIndex * columnWidth);
@@ -389,8 +406,8 @@ function createBuilding87Interior() {
         });
     });
     
-    // Create player at entrance (bottom center, but not too close to exit)
-    player = this.physics.add.sprite(400, config.height - 100, 'player-up');
+    // Create player at entrance (top center, entering from campus)
+    player = this.physics.add.sprite(400, 60, 'player-down');
     player.setCollideWorldBounds(true);
     player.setSize(24, 16);
     player.setOffset(4, 32);
@@ -407,33 +424,35 @@ function createBuilding87Interior() {
         padding: { x: 10, y: 5 }
     }).setOrigin(0.5).setVisible(false);
     
-    // Add vending machines along the walls (empty and sad)
+    // Add vending machines in corners (organized, empty and sad)
     const vendingGroup = this.physics.add.staticGroup();
     
-    // Left wall vending machines
-    const vending1 = vendingGroup.create(40, 200, 'vending-machine');
+    // Bottom left corner
+    const vending1 = vendingGroup.create(60, config.height - 60, 'vending-machine');
     vending1.setData('type', 'vending');
     vending1.setData('message', 'OUT OF ORDER');
     vendingMachines.push(vending1);
     
-    const vending2 = vendingGroup.create(40, 350, 'vending-machine');
+    // Bottom right corner
+    const vending2 = vendingGroup.create(config.width - 60, config.height - 60, 'vending-machine');
     vending2.setData('type', 'vending');
     vending2.setData('message', 'EMPTY - Restocking Soon™');
     vendingMachines.push(vending2);
     
-    // Right wall vending machines
-    const vending3 = vendingGroup.create(config.width - 40, 200, 'vending-machine');
+    // Bottom left (second machine)
+    const vending3 = vendingGroup.create(120, config.height - 60, 'vending-machine');
     vending3.setData('type', 'vending');
     vending3.setData('message', 'No Snacks Available');
     vendingMachines.push(vending3);
     
-    const vending4 = vendingGroup.create(config.width - 40, 400, 'vending-machine');
+    // Bottom right (second machine)
+    const vending4 = vendingGroup.create(config.width - 120, config.height - 60, 'vending-machine');
     vending4.setData('type', 'vending');
     vending4.setData('message', 'Card Reader Broken 😢');
     vendingMachines.push(vending4);
     
-    // Add exit prompt at bottom
-    this.add.text(400, config.height - 10, '↓ Exit to Campus | E/Space on program to enter room', {
+    // Add exit prompt at top
+    this.add.text(400, 15, '↑ Exit to Campus | E/Space on program to enter room', {
         fontSize: '12px',
         fontFamily: 'Arial',
         color: '#00ff00',
@@ -441,7 +460,7 @@ function createBuilding87Interior() {
         padding: { x: 10, y: 5 }
     }).setOrigin(0.5);
     
-    playerDirection = 'up';
+    playerDirection = 'down';
     currentScene = 'school';
     
     // Play school music
@@ -820,6 +839,8 @@ function handleBuilding87Interaction() {
             interactionPrompt.setText('Press E - Contact Dean');
         } else if (type === 'counselor-contact') {
             interactionPrompt.setText('Press E - Contact Counselor');
+        } else if (type === 'receptionist-contact') {
+            interactionPrompt.setText('Press E - Contact Receptionist');
         } else {
             interactionPrompt.setText('Press E or Space to learn more');
         }
@@ -838,6 +859,11 @@ function handleBuilding87Interaction() {
                 const school = nearNPC.getData('school');
                 if (school && uiController) {
                     uiController.showCounselorContact(school);
+                }
+            } else if (type === 'receptionist-contact') {
+                const school = nearNPC.getData('school');
+                if (school && uiController) {
+                    uiController.showReceptionistContact(school);
                 }
             } else if (type === 'chair') {
                 // Show department chair info modal
@@ -858,8 +884,8 @@ function handleBuilding87Interaction() {
         interactionPrompt.setVisible(false);
     }
     
-    // Check if player is at exit (very bottom of screen, past the gap in the wall)
-    if (player.y > config.height - 20) {
+    // Check if player is at exit (very top of screen, past the gap in the wall)
+    if (player.y < 20) {
         createOverworld.call(this);
     }
 }
