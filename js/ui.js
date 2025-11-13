@@ -343,6 +343,40 @@ class UIController {
         this.modal.classList.add('active');
     }
     
+    showTutorContact(tutor) {
+        document.getElementById('modal-title').textContent = tutor.name;
+        document.getElementById('modal-description').textContent = 
+            `${tutor.title}\n` +
+            `${tutor.program}\n\n` +
+            `📧 Email: ${tutor.email}\n` +
+            `📍 Tutoring Location: Room ${tutor.room}\n\n` +
+            `Get help with:\n` +
+            `• Course material and assignments\n` +
+            `• Studio techniques and technology\n` +
+            `• Project guidance and feedback\n` +
+            `• Exam preparation and study strategies\n\n` +
+            `Stop by during tutoring hours or email to schedule an appointment!`;
+        
+        const badgesContainer = document.getElementById('modal-badges');
+        badgesContainer.innerHTML = '';
+        
+        const badge = document.createElement('span');
+        badge.className = 'badge';
+        badge.style.background = '#9b59b6';
+        badge.textContent = '📚 Program Tutor';
+        badgesContainer.appendChild(badge);
+        
+        document.getElementById('modal-video').innerHTML = '';
+        
+        const learnMoreLink = document.getElementById('modal-link');
+        learnMoreLink.href = `mailto:${tutor.email}`;
+        learnMoreLink.textContent = 'Send Email to Alex';
+        learnMoreLink.style.display = 'inline-block';
+        
+        this.modal.classList.remove('hidden');
+        this.modal.classList.add('active');
+    }
+    
     showVendingMachineMessage(message) {
         // Set modal content for empty vending machine
         document.getElementById('modal-title').textContent = '🥤 Vending Machine';

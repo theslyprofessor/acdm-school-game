@@ -758,6 +758,29 @@ function createProgramRoom(program, departmentName) {
             backgroundColor: 'rgba(0,0,0,0.8)',
             padding: { x: 6, y: 3 }
         }).setOrigin(0.5);
+        
+        // Add RA&T Tutor icon (bottom right)
+        const tutorIcon = resourceGroup.create(config.width - 80, config.height - 80, 'chair-icon');
+        tutorIcon.setData('type', 'tutor');
+        tutorIcon.setData('tutor', {
+            name: 'Alex Vargas',
+            title: 'RA&T Tutor',
+            email: 'avargas2@swccd.edu',
+            room: '84-102',
+            program: 'Recording Arts & Technology'
+        });
+        npcs.push(tutorIcon);
+        
+        this.add.text(config.width - 80, config.height - 50, 'RA&T Tutor\nAlex Vargas', {
+            fontSize: '10px',
+            fontFamily: 'Arial',
+            color: '#3498db',
+            align: 'center',
+            stroke: '#000000',
+            strokeThickness: 2,
+            backgroundColor: 'rgba(0,0,0,0.8)',
+            padding: { x: 6, y: 3 }
+        }).setOrigin(0.5);
     }
     
     // Create player
@@ -923,25 +946,39 @@ function handleProgramRoomInteraction() {
         }
     }
     
-    // Check for program lead contact
-    let nearLead = false;
+    // Check for program lead or tutor contact
+    let nearNPC = false;
     for (let npc of npcs) {
-        if (npc.getData('type') === 'program-lead') {
+        const npcType = npc.getData('type');
+        if (npcType === 'program-lead' || npcType === 'tutor') {
             const distance = Phaser.Math.Distance.Between(
                 player.x, player.y,
                 npc.x, npc.y
             );
             
             if (distance < 60) {
-                nearLead = true;
-                interactionPrompt.setText('Press E - Contact Program Lead');
+                nearNPC = true;
+                
+                if (npcType === 'program-lead') {
+                    interactionPrompt.setText('Press E - Contact Program Lead');
+                } else if (npcType === 'tutor') {
+                    interactionPrompt.setText('Press E - Contact Tutor');
+                }
+                
                 interactionPrompt.setVisible(true);
                 
                 if (Phaser.Input.Keyboard.JustDown(interactKey.e) || 
                     Phaser.Input.Keyboard.JustDown(interactKey.space)) {
-                    const program = npc.getData('program');
-                    if (uiController && program) {
-                        uiController.showProgramLeadContact(program);
+                    if (npcType === 'program-lead') {
+                        const program = npc.getData('program');
+                        if (uiController && program) {
+                            uiController.showProgramLeadContact(program);
+                        }
+                    } else if (npcType === 'tutor') {
+                        const tutor = npc.getData('tutor');
+                        if (uiController && tutor) {
+                            uiController.showTutorContact(tutor);
+                        }
                     }
                 }
                 break;
@@ -950,7 +987,7 @@ function handleProgramRoomInteraction() {
     }
     
     // Check for degree icons
-    if (!nearLead) {
+    if (!nearNPC) {
         let nearDegree = null;
         for (let icon of degreeIcons) {
             const distance = Phaser.Math.Distance.Between(
