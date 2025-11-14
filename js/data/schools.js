@@ -110,6 +110,15 @@ const SCHOOLS = {
                         id: 'journalism',
                         name: 'Journalism',
                         awards: 2,
+                        programLead: {
+                            name: 'Max Branscomb',
+                            title: 'Professor',
+                            email: 'mbranscomb@swccd.edu',
+                            phone: '(619) 421-6700 x5701',
+                            office: '57A-104',
+                            department: 'School of Arts, Communication, Design & Media',
+                            contactUrl: 'https://go.swccd.edu/contact/person/33a8f74bdb7fa6005e33f8fdae9619f5'
+                        },
                         degrees: [
                             { type: 'Associate', name: 'Journalism - AA', url: 'https://catalog.swccd.edu/associate-degree-certificate-programs/journalism/journalism-aa/' }
                         ],
