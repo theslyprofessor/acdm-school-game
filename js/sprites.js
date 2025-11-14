@@ -36,168 +36,280 @@ class SpriteGenerator {
     }
     
     static drawPlayerDown(graphics, x, y, frame) {
-        // Skin color
-        graphics.fillStyle(0xffdbac, 1);
+        // Jaguar facing down
+        const goldFur = 0xFFB84D;
+        const darkGold = 0xE09536;
+        const spotColor = 0x2C1810;
+        const white = 0xFFFFFF;
+        const pink = 0xFF9999;
         
-        // Head (larger - 16x12)
+        // HEAD
+        graphics.fillStyle(goldFur, 1);
         graphics.fillRect(x + 8, y + 4, 16, 12);
         
-        // Hair (brown)
-        graphics.fillStyle(0x654321, 1);
-        graphics.fillRect(x + 8, y + 2, 16, 6);
+        // Ears
+        graphics.fillRect(x + 8, y + 2, 6, 4);
+        graphics.fillRect(x + 18, y + 2, 6, 4);
+        graphics.fillStyle(pink, 1);
+        graphics.fillRect(x + 10, y + 3, 2, 2);
+        graphics.fillRect(x + 20, y + 3, 2, 2);
         
-        // Eyes
+        // White muzzle
+        graphics.fillStyle(white, 1);
+        graphics.fillRect(x + 10, y + 10, 12, 6);
+        
+        // Eyes (green)
+        graphics.fillStyle(0x00FF00, 1);
+        graphics.fillRect(x + 10, y + 6, 4, 3);
+        graphics.fillRect(x + 18, y + 6, 4, 3);
         graphics.fillStyle(0x000000, 1);
-        graphics.fillRect(x + 10, y + 8, 4, 4);
-        graphics.fillRect(x + 18, y + 8, 4, 4);
+        graphics.fillRect(x + 12, y + 7, 1, 2);
+        graphics.fillRect(x + 20, y + 7, 1, 2);
         
-        // Body (blue shirt)
-        graphics.fillStyle(0x4169e1, 1);
-        graphics.fillRect(x + 8, y + 16, 16, 16);
+        // Nose
+        graphics.fillStyle(pink, 1);
+        graphics.fillRect(x + 14, y + 12, 4, 2);
         
-        // Arms
-        graphics.fillRect(x + 4, y + 18, 4, 12);
-        graphics.fillRect(x + 24, y + 18, 4, 12);
+        // BODY
+        graphics.fillStyle(goldFur, 1);
+        graphics.fillRect(x + 6, y + 16, 20, 16);
         
-        // Legs (darker blue pants)
-        graphics.fillStyle(0x1e3a8a, 1);
-        if (frame === 'left') {
-            graphics.fillRect(x + 8, y + 32, 6, 16);
-            graphics.fillRect(x + 18, y + 32, 6, 14);
-        } else if (frame === 'right') {
-            graphics.fillRect(x + 8, y + 32, 6, 14);
-            graphics.fillRect(x + 18, y + 32, 6, 16);
-        } else {
-            graphics.fillRect(x + 8, y + 32, 6, 16);
-            graphics.fillRect(x + 18, y + 32, 6, 16);
-        }
+        // Spots
+        graphics.fillStyle(spotColor, 1);
+        graphics.fillRect(x + 8, y + 18, 3, 3);
+        graphics.fillRect(x + 14, y + 20, 2, 2);
+        graphics.fillRect(x + 20, y + 18, 3, 3);
+        graphics.fillRect(x + 10, y + 26, 2, 2);
+        graphics.fillRect(x + 18, y + 27, 2, 2);
+        
+        // LEGS
+        graphics.fillStyle(darkGold, 1);
+        graphics.fillRect(x + 8, y + 32, 4, 12);
+        graphics.fillRect(x + 20, y + 32, 4, 12);
+        graphics.fillRect(x + 10, y + 34, 4, 10);
+        graphics.fillRect(x + 18, y + 34, 4, 10);
+        
+        // TAIL
+        graphics.fillStyle(goldFur, 1);
+        graphics.fillRect(x + 26, y + 20, 3, 10);
+        graphics.fillStyle(spotColor, 1);
+        graphics.fillRect(x + 27, y + 22, 1, 2);
+        graphics.fillRect(x + 27, y + 26, 1, 2);
     }
     
     static drawPlayerUp(graphics, x, y, frame) {
-        // Back of head (hair)
-        graphics.fillStyle(0x654321, 1);
-        graphics.fillRect(x + 8, y + 2, 16, 14);
+        // Jaguar facing up (back view)
+        const goldFur = 0xFFB84D;
+        const darkGold = 0xE09536;
+        const spotColor = 0x2C1810;
         
-        // Body (blue shirt)
-        graphics.fillStyle(0x4169e1, 1);
-        graphics.fillRect(x + 8, y + 16, 16, 16);
+        // Ears visible
+        graphics.fillStyle(goldFur, 1);
+        graphics.fillRect(x + 8, y + 2, 5, 3);
+        graphics.fillRect(x + 19, y + 2, 5, 3);
         
-        // Arms
-        graphics.fillRect(x + 4, y + 18, 4, 12);
-        graphics.fillRect(x + 24, y + 18, 4, 12);
+        // Head back
+        graphics.fillRect(x + 8, y + 4, 16, 10);
+        
+        // Body
+        graphics.fillRect(x + 6, y + 14, 20, 18);
+        
+        // Spots on back
+        graphics.fillStyle(spotColor, 1);
+        graphics.fillRect(x + 8, y + 16, 4, 4);
+        graphics.fillRect(x + 15, y + 18, 3, 3);
+        graphics.fillRect(x + 20, y + 16, 4, 4);
+        graphics.fillRect(x + 10, y + 24, 2, 2);
+        graphics.fillRect(x + 19, y + 26, 3, 3);
         
         // Legs
-        graphics.fillStyle(0x1e3a8a, 1);
-        if (frame === 'left') {
-            graphics.fillRect(x + 8, y + 32, 6, 16);
-            graphics.fillRect(x + 18, y + 32, 6, 14);
-        } else if (frame === 'right') {
-            graphics.fillRect(x + 8, y + 32, 6, 14);
-            graphics.fillRect(x + 18, y + 32, 6, 16);
-        } else {
-            graphics.fillRect(x + 8, y + 32, 6, 16);
-            graphics.fillRect(x + 18, y + 32, 6, 16);
-        }
+        graphics.fillStyle(darkGold, 1);
+        graphics.fillRect(x + 8, y + 32, 4, 12);
+        graphics.fillRect(x + 20, y + 32, 4, 12);
+        graphics.fillRect(x + 10, y + 34, 4, 10);
+        graphics.fillRect(x + 18, y + 34, 4, 10);
+        
+        // Tail (curved upward)
+        graphics.fillStyle(goldFur, 1);
+        graphics.fillRect(x + 14, y + 6, 4, 10);
+        graphics.fillStyle(spotColor, 1);
+        graphics.fillRect(x + 15, y + 8, 2, 2);
+        graphics.fillRect(x + 15, y + 12, 2, 2);
     }
     
     static drawPlayerLeft(graphics, x, y, frame) {
-        // Head
-        graphics.fillStyle(0xffdbac, 1);
-        graphics.fillRect(x + 10, y + 4, 12, 12);
+        // Jaguar facing left
+        const goldFur = 0xFFB84D;
+        const darkGold = 0xE09536;
+        const spotColor = 0x2C1810;
+        const white = 0xFFFFFF;
+        const pink = 0xFF9999;
         
-        // Hair
-        graphics.fillStyle(0x654321, 1);
-        graphics.fillRect(x + 10, y + 2, 12, 6);
+        // Head
+        graphics.fillStyle(goldFur, 1);
+        graphics.fillRect(x + 8, y + 4, 14, 12);
+        
+        // Ear
+        graphics.fillRect(x + 8, y + 2, 5, 4);
+        graphics.fillStyle(pink, 1);
+        graphics.fillRect(x + 10, y + 3, 2, 2);
         
         // Eye
+        graphics.fillStyle(0x00FF00, 1);
+        graphics.fillRect(x + 10, y + 7, 4, 3);
         graphics.fillStyle(0x000000, 1);
-        graphics.fillRect(x + 12, y + 8, 4, 4);
+        graphics.fillRect(x + 12, y + 8, 1, 2);
+        
+        // Snout
+        graphics.fillStyle(white, 1);
+        graphics.fillRect(x + 6, y + 11, 5, 5);
+        graphics.fillStyle(pink, 1);
+        graphics.fillRect(x + 6, y + 12, 3, 2);
+        
+        // Spots on face
+        graphics.fillStyle(spotColor, 1);
+        graphics.fillRect(x + 10, y + 5, 2, 2);
+        graphics.fillRect(x + 16, y + 7, 2, 2);
         
         // Body
-        graphics.fillStyle(0x4169e1, 1);
-        graphics.fillRect(x + 10, y + 16, 12, 16);
+        graphics.fillStyle(goldFur, 1);
+        graphics.fillRect(x + 10, y + 16, 16, 16);
         
-        // Arm
-        graphics.fillRect(x + 6, y + 18, 4, 12);
+        // Spots
+        graphics.fillStyle(spotColor, 1);
+        graphics.fillRect(x + 12, y + 18, 3, 3);
+        graphics.fillRect(x + 17, y + 20, 2, 2);
+        graphics.fillRect(x + 21, y + 19, 3, 3);
         
         // Legs
-        graphics.fillStyle(0x1e3a8a, 1);
-        if (frame === 'left') {
-            graphics.fillRect(x + 10, y + 32, 6, 16);
-            graphics.fillRect(x + 16, y + 32, 6, 14);
-        } else if (frame === 'right') {
-            graphics.fillRect(x + 10, y + 32, 6, 14);
-            graphics.fillRect(x + 16, y + 32, 6, 16);
-        } else {
-            graphics.fillRect(x + 10, y + 32, 6, 16);
-            graphics.fillRect(x + 16, y + 32, 6, 16);
-        }
+        graphics.fillStyle(darkGold, 1);
+        graphics.fillRect(x + 12, y + 32, 4, 12);
+        graphics.fillRect(x + 20, y + 32, 4, 12);
+        
+        // Tail
+        graphics.fillStyle(goldFur, 1);
+        graphics.fillRect(x + 26, y + 18, 3, 10);
+        graphics.fillStyle(spotColor, 1);
+        graphics.fillRect(x + 27, y + 20, 1, 2);
     }
     
     static drawPlayerRight(graphics, x, y, frame) {
-        // Head
-        graphics.fillStyle(0xffdbac, 1);
-        graphics.fillRect(x + 10, y + 4, 12, 12);
+        // Jaguar facing right
+        const goldFur = 0xFFB84D;
+        const darkGold = 0xE09536;
+        const spotColor = 0x2C1810;
+        const white = 0xFFFFFF;
+        const pink = 0xFF9999;
         
-        // Hair
-        graphics.fillStyle(0x654321, 1);
-        graphics.fillRect(x + 10, y + 2, 12, 6);
+        // Head
+        graphics.fillStyle(goldFur, 1);
+        graphics.fillRect(x + 10, y + 4, 14, 12);
+        
+        // Ear
+        graphics.fillRect(x + 19, y + 2, 5, 4);
+        graphics.fillStyle(pink, 1);
+        graphics.fillRect(x + 20, y + 3, 2, 2);
         
         // Eye
+        graphics.fillStyle(0x00FF00, 1);
+        graphics.fillRect(x + 18, y + 7, 4, 3);
         graphics.fillStyle(0x000000, 1);
-        graphics.fillRect(x + 16, y + 8, 4, 4);
+        graphics.fillRect(x + 19, y + 8, 1, 2);
+        
+        // Snout
+        graphics.fillStyle(white, 1);
+        graphics.fillRect(x + 21, y + 11, 5, 5);
+        graphics.fillStyle(pink, 1);
+        graphics.fillRect(x + 23, y + 12, 3, 2);
+        
+        // Spots on face
+        graphics.fillStyle(spotColor, 1);
+        graphics.fillRect(x + 20, y + 5, 2, 2);
+        graphics.fillRect(x + 14, y + 7, 2, 2);
         
         // Body
-        graphics.fillStyle(0x4169e1, 1);
-        graphics.fillRect(x + 10, y + 16, 12, 16);
+        graphics.fillStyle(goldFur, 1);
+        graphics.fillRect(x + 6, y + 16, 16, 16);
         
-        // Arm
-        graphics.fillRect(x + 22, y + 18, 4, 12);
+        // Spots
+        graphics.fillStyle(spotColor, 1);
+        graphics.fillRect(x + 9, y + 19, 3, 3);
+        graphics.fillRect(x + 13, y + 20, 2, 2);
+        graphics.fillRect(x + 17, y + 18, 3, 3);
         
         // Legs
-        graphics.fillStyle(0x1e3a8a, 1);
-        if (frame === 'left') {
-            graphics.fillRect(x + 10, y + 32, 6, 16);
-            graphics.fillRect(x + 16, y + 32, 6, 14);
-        } else if (frame === 'right') {
-            graphics.fillRect(x + 10, y + 32, 6, 14);
-            graphics.fillRect(x + 16, y + 32, 6, 16);
-        } else {
-            graphics.fillRect(x + 10, y + 32, 6, 16);
-            graphics.fillRect(x + 16, y + 32, 6, 16);
-        }
+        graphics.fillStyle(darkGold, 1);
+        graphics.fillRect(x + 8, y + 32, 4, 12);
+        graphics.fillRect(x + 16, y + 32, 4, 12);
+        
+        // Tail
+        graphics.fillStyle(goldFur, 1);
+        graphics.fillRect(x + 3, y + 18, 3, 10);
+        graphics.fillStyle(spotColor, 1);
+        graphics.fillRect(x + 4, y + 20, 1, 2);
     }
     
     static drawPlayerPortrait(graphics) {
-        // Border
-        graphics.fillStyle(0x654321, 1);
+        // Jaguar portrait
+        const goldFur = 0xFFB84D;
+        const spotColor = 0x2C1810;
+        const white = 0xFFFFFF;
+        const pink = 0xFF9999;
+        
+        // Background (jungle green)
+        graphics.fillStyle(0x2F4F2F, 1);
         graphics.fillRect(0, 0, 64, 64);
         
-        // Inner background
-        graphics.fillStyle(0xffdbac, 1);
-        graphics.fillRect(4, 4, 56, 56);
+        // Border
+        graphics.lineStyle(3, goldFur, 1);
+        graphics.strokeRect(2, 2, 60, 60);
         
         // Face
-        graphics.fillStyle(0xffdbac, 1);
+        graphics.fillStyle(goldFur, 1);
         graphics.fillRect(16, 16, 32, 32);
         
-        // Hair
-        graphics.fillStyle(0x654321, 1);
-        graphics.fillRect(16, 12, 32, 12);
+        // Ears
+        graphics.fillRect(14, 12, 10, 8);
+        graphics.fillRect(40, 12, 10, 8);
+        graphics.fillStyle(pink, 1);
+        graphics.fillRect(17, 15, 4, 3);
+        graphics.fillRect(43, 15, 4, 3);
         
-        // Eyes
+        // White muzzle
+        graphics.fillStyle(white, 1);
+        graphics.fillRect(22, 32, 20, 14);
+        
+        // Eyes (green)
+        graphics.fillStyle(0x00FF00, 1);
+        graphics.fillRect(22, 24, 6, 6);
+        graphics.fillRect(36, 24, 6, 6);
         graphics.fillStyle(0x000000, 1);
-        graphics.fillRect(22, 28, 6, 6);
-        graphics.fillRect(36, 28, 6, 6);
+        graphics.fillRect(24, 26, 3, 4);
+        graphics.fillRect(38, 26, 3, 4);
+        graphics.fillStyle(white, 1);
+        graphics.fillRect(25, 27, 1, 2);
+        graphics.fillRect(39, 27, 1, 2);
         
-        // Smile
-        graphics.fillRect(26, 42, 12, 2);
-        graphics.fillRect(24, 40, 2, 2);
-        graphics.fillRect(38, 40, 2, 2);
+        // Nose
+        graphics.fillStyle(pink, 1);
+        graphics.fillRect(28, 38, 8, 4);
+        graphics.fillStyle(0x000000, 1);
+        graphics.fillRect(30, 39, 1, 2);
+        graphics.fillRect(33, 39, 1, 2);
+        graphics.fillRect(32, 42, 1, 2);
         
-        // Shirt
-        graphics.fillStyle(0x4169e1, 1);
-        graphics.fillRect(16, 48, 32, 12);
+        // Spots
+        graphics.fillStyle(spotColor, 1);
+        graphics.fillRect(18, 20, 4, 4);
+        graphics.fillRect(42, 20, 4, 4);
+        graphics.fillRect(20, 28, 3, 3);
+        graphics.fillRect(41, 28, 3, 3);
+        graphics.fillRect(24, 18, 2, 2);
+        graphics.fillRect(38, 18, 2, 2);
+        
+        // Whisker dots
+        graphics.fillRect(18, 36, 2, 2);
+        graphics.fillRect(44, 36, 2, 2);
     }
     
     static createGrassTile(scene) {
