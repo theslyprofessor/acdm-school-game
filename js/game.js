@@ -126,27 +126,7 @@ function create() {
         console.log(`🎵 Music ${enabled ? 'enabled' : 'disabled'}`);
     });
     
-    // Create jaguar walking animations from sprite sheets
-    const directions = ['down', 'up', 'left', 'right'];
-    directions.forEach(direction => {
-        this.anims.create({
-            key: `walk-${direction}`,
-            frames: this.anims.generateFrameNumbers(`player-${direction}-sheet`, { 
-                start: 0, 
-                end: 3,
-                frames: [0, 1, 2, 3]
-            }),
-            frameRate: 8,
-            repeat: -1
-        });
-        
-        // Idle animation (just first frame)
-        this.anims.create({
-            key: `idle-${direction}`,
-            frames: [{ key: `player-${direction}-sheet`, frame: 0 }],
-            frameRate: 1
-        });
-    });
+    // No animations needed - just static sprites in 4 directions
     
     // Set portrait in UI
     const portraitDiv = document.getElementById('character-portrait');
@@ -206,12 +186,11 @@ function createOverworld() {
         padding: { x: 8, y: 4 }
     }).setOrigin(0.5);
     
-    // Create jaguar player with animated sprite (48x48)
-    player = this.physics.add.sprite(400, 500, 'player-down-sheet');
+    // Create player with larger sprite (32x48)
+    player = this.physics.add.sprite(400, 500, 'player-down');
     player.setCollideWorldBounds(true);
-    player.setSize(32, 20);
-    player.setOffset(8, 28);
-    player.play('idle-down');
+    player.setSize(24, 16);
+    player.setOffset(4, 32);
     
     // Set up collision
     this.physics.add.collider(player, buildings);
@@ -444,12 +423,11 @@ function createBuilding87Interior() {
         });
     });
     
-    // Create jaguar player at entrance (top center, entering from campus)
-    player = this.physics.add.sprite(400, 60, 'player-down-sheet');
+    // Create player at entrance (top center, entering from campus)
+    player = this.physics.add.sprite(400, 60, 'player-down');
     player.setCollideWorldBounds(true);
-    player.setSize(32, 20);
-    player.setOffset(8, 28);
-    player.play('idle-down');
+    player.setSize(24, 16);
+    player.setOffset(4, 32);
     
     // Set up collision
     this.physics.add.collider(player, walls);
@@ -546,20 +524,10 @@ function update() {
         );
     }
     
-    // Update jaguar animation based on movement
-    if (moving) {
-        if (newDirection !== playerDirection) {
-            playerDirection = newDirection;
-        }
-        // Play walking animation if not already playing
-        if (player.anims.currentAnim?.key !== `walk-${playerDirection}`) {
-            player.play(`walk-${playerDirection}`);
-        }
-    } else {
-        // Play idle animation when stopped
-        if (player.anims.currentAnim?.key !== `idle-${playerDirection}`) {
-            player.play(`idle-${playerDirection}`);
-        }
+    // Update sprite direction based on movement
+    if (moving && newDirection !== playerDirection) {
+        playerDirection = newDirection;
+        player.setTexture(`player-${playerDirection}`);
     }
     
     // Handle scene-specific interactions
@@ -816,12 +784,11 @@ function createProgramRoom(program, departmentName) {
         }).setOrigin(0.5);
     }
     
-    // Create jaguar player
-    player = this.physics.add.sprite(400, config.height - 100, 'player-up-sheet');
+    // Create player
+    player = this.physics.add.sprite(400, config.height - 100, 'player-up');
     player.setCollideWorldBounds(true);
-    player.setSize(32, 20);
-    player.setOffset(8, 28);
-    player.play('idle-up');
+    player.setSize(24, 16);
+    player.setOffset(4, 32);
     
     // Set up collision
     this.physics.add.collider(player, walls);
