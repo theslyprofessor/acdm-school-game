@@ -40,6 +40,8 @@ let degreeIcons = [];
 let interactionPrompt;
 let playerDirection = 'down';
 let musicManager = null;
+let selectedGender = 'male'; // 'male' or 'female' - default to male jaguar
+let gameScene = null; // Store reference to Phaser scene
 
 function preload() {
     // Generate all sprite assets using SpriteGenerator
@@ -126,15 +128,26 @@ function create() {
         console.log(`🎵 Music ${enabled ? 'enabled' : 'disabled'}`);
     });
     
+    // Store scene reference for character switching
+    gameScene = this;
+    
+    // Set up character selector buttons
+    const characterButtons = document.querySelectorAll('.character-btn');
+    characterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const gender = btn.dataset.character;
+            switchCharacter(gender);
+            
+            // Update active button
+            characterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+    
     // No animations needed - just static sprites in 4 directions
     
-    // Set portrait in UI
-    const portraitDiv = document.getElementById('character-portrait');
-    if (portraitDiv && this.textures.exists('player-portrait')) {
-        const canvas = this.textures.get('player-portrait').getSourceImage();
-        portraitDiv.style.backgroundImage = `url(${canvas.toDataURL()})`;
-        portraitDiv.style.backgroundSize = 'cover';
-    }
+    // Set initial portrait in UI
+    updatePortrait();
     
     // Start with overworld scene
     createOverworld.call(this);
@@ -187,7 +200,7 @@ function createOverworld() {
     }).setOrigin(0.5);
     
     // Create player with larger sprite (32x48)
-    player = this.physics.add.sprite(400, 500, 'player-down');
+    player = this.physics.add.sprite(400, 500, `player-${selectedGender}-down`);
     player.setCollideWorldBounds(true);
     player.setSize(24, 16);
     player.setOffset(4, 32);
@@ -424,7 +437,7 @@ function createBuilding87Interior() {
     });
     
     // Create player at entrance (top center, entering from campus)
-    player = this.physics.add.sprite(400, 60, 'player-down');
+    player = this.physics.add.sprite(400, 60, `player-${selectedGender}-down`);
     player.setCollideWorldBounds(true);
     player.setSize(24, 16);
     player.setOffset(4, 32);
@@ -527,7 +540,7 @@ function update() {
     // Update sprite direction based on movement
     if (moving && newDirection !== playerDirection) {
         playerDirection = newDirection;
-        player.setTexture(`player-${playerDirection}`);
+        player.setTexture(`player-${selectedGender}-${playerDirection}`);
     }
     
     // Handle scene-specific interactions
@@ -785,7 +798,7 @@ function createProgramRoom(program, departmentName) {
     }
     
     // Create player
-    player = this.physics.add.sprite(400, config.height - 100, 'player-up');
+    player = this.physics.add.sprite(400, config.height - 100, `player-${selectedGender}-up`);
     player.setCollideWorldBounds(true);
     player.setSize(24, 16);
     player.setOffset(4, 32);
@@ -1036,5 +1049,32 @@ function handleProgramRoomInteraction() {
     // Check if player is at exit
     if (player.y > config.height - 20) {
         createBuilding87Interior.call(this);
+    }
+}
+
+// Character switching functions
+function switchCharacter(gender) {
+    selectedGender = gender;
+    
+    // Update player sprite texture
+    if (player) {
+        const newTexture = `player-${gender}-${playerDirection}`;
+        if (gameScene.textures.exists(newTexture)) {
+            player.setTexture(newTexture);
+        }
+    }
+    
+    // Update portrait
+    updatePortrait();
+}
+
+function updatePortrait() {
+    const portraitDiv = document.getElementById('character-portrait');
+    const textureName = `player-${selectedGender}-portrait`;
+    
+    if (portraitDiv && gameScene && gameScene.textures.exists(textureName)) {
+        const canvas = gameScene.textures.get(textureName).getSourceImage();
+        portraitDiv.style.backgroundImage = `url(${canvas.toDataURL()})`;
+        portraitDiv.style.backgroundSize = 'cover';
     }
 }

@@ -1,47 +1,102 @@
 // Sprite generation for pixel art characters and tiles
 class SpriteGenerator {
     static createPlayerSprites(scene) {
-        // Create larger player character sprite (32x48 pixel - Dragon Quest sized!)
-        // Single sprite per direction
-        
-        // Down facing
+        // Create male jaguar (orange/gold)
         const downGraphics = scene.add.graphics();
-        this.drawPlayerDown(downGraphics, 0, 0, 'stand');
-        downGraphics.generateTexture('player-down', 32, 48);
+        this.drawPlayerDown(downGraphics, 0, 0, 'stand', 'male');
+        downGraphics.generateTexture('player-male-down', 32, 48);
         downGraphics.destroy();
         
-        // Up facing
         const upGraphics = scene.add.graphics();
-        this.drawPlayerUp(upGraphics, 0, 0, 'stand');
-        upGraphics.generateTexture('player-up', 32, 48);
+        this.drawPlayerUp(upGraphics, 0, 0, 'stand', 'male');
+        upGraphics.generateTexture('player-male-up', 32, 48);
         upGraphics.destroy();
         
-        // Left facing
         const leftGraphics = scene.add.graphics();
-        this.drawPlayerLeft(leftGraphics, 0, 0, 'stand');
-        leftGraphics.generateTexture('player-left', 32, 48);
+        this.drawPlayerLeft(leftGraphics, 0, 0, 'stand', 'male');
+        leftGraphics.generateTexture('player-male-left', 32, 48);
         leftGraphics.destroy();
         
-        // Right facing
         const rightGraphics = scene.add.graphics();
-        this.drawPlayerRight(rightGraphics, 0, 0, 'stand');
-        rightGraphics.generateTexture('player-right', 32, 48);
+        this.drawPlayerRight(rightGraphics, 0, 0, 'stand', 'male');
+        rightGraphics.generateTexture('player-male-right', 32, 48);
         rightGraphics.destroy();
         
-        // Create portrait
-        const portraitGraphics = scene.add.graphics();
-        this.drawPlayerPortrait(portraitGraphics);
-        portraitGraphics.generateTexture('player-portrait', 64, 64);
-        portraitGraphics.destroy();
+        const malePortraitGraphics = scene.add.graphics();
+        this.drawPlayerPortrait(malePortraitGraphics, 'male');
+        malePortraitGraphics.generateTexture('player-male-portrait', 64, 64);
+        malePortraitGraphics.destroy();
+        
+        // Create female jaguar (black/melanistic)
+        const femaleDownGraphics = scene.add.graphics();
+        this.drawPlayerDown(femaleDownGraphics, 0, 0, 'stand', 'female');
+        femaleDownGraphics.generateTexture('player-female-down', 32, 48);
+        femaleDownGraphics.destroy();
+        
+        const femaleUpGraphics = scene.add.graphics();
+        this.drawPlayerUp(femaleUpGraphics, 0, 0, 'stand', 'female');
+        femaleUpGraphics.generateTexture('player-female-up', 32, 48);
+        femaleUpGraphics.destroy();
+        
+        const femaleLeftGraphics = scene.add.graphics();
+        this.drawPlayerLeft(femaleLeftGraphics, 0, 0, 'stand', 'female');
+        femaleLeftGraphics.generateTexture('player-female-left', 32, 48);
+        femaleLeftGraphics.destroy();
+        
+        const femaleRightGraphics = scene.add.graphics();
+        this.drawPlayerRight(femaleRightGraphics, 0, 0, 'stand', 'female');
+        femaleRightGraphics.generateTexture('player-female-right', 32, 48);
+        femaleRightGraphics.destroy();
+        
+        const femalePortraitGraphics = scene.add.graphics();
+        this.drawPlayerPortrait(femalePortraitGraphics, 'female');
+        femalePortraitGraphics.generateTexture('player-female-portrait', 64, 64);
+        femalePortraitGraphics.destroy();
+        
+        // Keep legacy names for backward compatibility (default to male)
+        const legacyDown = scene.add.graphics();
+        this.drawPlayerDown(legacyDown, 0, 0, 'stand', 'male');
+        legacyDown.generateTexture('player-down', 32, 48);
+        legacyDown.destroy();
+        
+        const legacyUp = scene.add.graphics();
+        this.drawPlayerUp(legacyUp, 0, 0, 'stand', 'male');
+        legacyUp.generateTexture('player-up', 32, 48);
+        legacyUp.destroy();
+        
+        const legacyLeft = scene.add.graphics();
+        this.drawPlayerLeft(legacyLeft, 0, 0, 'stand', 'male');
+        legacyLeft.generateTexture('player-left', 32, 48);
+        legacyLeft.destroy();
+        
+        const legacyRight = scene.add.graphics();
+        this.drawPlayerRight(legacyRight, 0, 0, 'stand', 'male');
+        legacyRight.generateTexture('player-right', 32, 48);
+        legacyRight.destroy();
+        
+        const legacyPortrait = scene.add.graphics();
+        this.drawPlayerPortrait(legacyPortrait, 'male');
+        legacyPortrait.generateTexture('player-portrait', 64, 64);
+        legacyPortrait.destroy();
     }
     
-    static drawPlayerDown(graphics, x, y, frame) {
-        // Jaguar facing down
-        const goldFur = 0xFFB84D;
-        const darkGold = 0xE09536;
-        const spotColor = 0x2C1810;
+    static drawPlayerDown(graphics, x, y, frame, gender = 'male') {
+        // Jaguar facing down - colors depend on gender
+        let goldFur, darkGold, spotColor;
         const white = 0xFFFFFF;
         const pink = 0xFF9999;
+        
+        if (gender === 'female') {
+            // Black jaguar (melanistic)
+            goldFur = 0x1a1a1a;      // Very dark gray/black
+            darkGold = 0x0d0d0d;     // Even darker
+            spotColor = 0x000000;    // Pure black for subtle spots
+        } else {
+            // Male - orange/gold jaguar
+            goldFur = 0xFFB84D;
+            darkGold = 0xE09536;
+            spotColor = 0x2C1810;
+        }
         
         // HEAD
         graphics.fillStyle(goldFur, 1);
@@ -97,11 +152,19 @@ class SpriteGenerator {
         graphics.fillRect(x + 27, y + 26, 1, 2);
     }
     
-    static drawPlayerUp(graphics, x, y, frame) {
+    static drawPlayerUp(graphics, x, y, frame, gender = 'male') {
         // Jaguar facing up (back view)
-        const goldFur = 0xFFB84D;
-        const darkGold = 0xE09536;
-        const spotColor = 0x2C1810;
+        let goldFur, darkGold, spotColor;
+        
+        if (gender === 'female') {
+            goldFur = 0x1a1a1a;
+            darkGold = 0x0d0d0d;
+            spotColor = 0x000000;
+        } else {
+            goldFur = 0xFFB84D;
+            darkGold = 0xE09536;
+            spotColor = 0x2C1810;
+        }
         
         // Ears visible
         graphics.fillStyle(goldFur, 1);
@@ -137,13 +200,21 @@ class SpriteGenerator {
         graphics.fillRect(x + 15, y + 12, 2, 2);
     }
     
-    static drawPlayerLeft(graphics, x, y, frame) {
+    static drawPlayerLeft(graphics, x, y, frame, gender = 'male') {
         // Jaguar facing left
-        const goldFur = 0xFFB84D;
-        const darkGold = 0xE09536;
-        const spotColor = 0x2C1810;
+        let goldFur, darkGold, spotColor;
         const white = 0xFFFFFF;
         const pink = 0xFF9999;
+        
+        if (gender === 'female') {
+            goldFur = 0x1a1a1a;
+            darkGold = 0x0d0d0d;
+            spotColor = 0x000000;
+        } else {
+            goldFur = 0xFFB84D;
+            darkGold = 0xE09536;
+            spotColor = 0x2C1810;
+        }
         
         // Head
         graphics.fillStyle(goldFur, 1);
@@ -193,13 +264,21 @@ class SpriteGenerator {
         graphics.fillRect(x + 27, y + 20, 1, 2);
     }
     
-    static drawPlayerRight(graphics, x, y, frame) {
+    static drawPlayerRight(graphics, x, y, frame, gender = 'male') {
         // Jaguar facing right
-        const goldFur = 0xFFB84D;
-        const darkGold = 0xE09536;
-        const spotColor = 0x2C1810;
+        let goldFur, darkGold, spotColor;
         const white = 0xFFFFFF;
         const pink = 0xFF9999;
+        
+        if (gender === 'female') {
+            goldFur = 0x1a1a1a;
+            darkGold = 0x0d0d0d;
+            spotColor = 0x000000;
+        } else {
+            goldFur = 0xFFB84D;
+            darkGold = 0xE09536;
+            spotColor = 0x2C1810;
+        }
         
         // Head
         graphics.fillStyle(goldFur, 1);
@@ -249,12 +328,19 @@ class SpriteGenerator {
         graphics.fillRect(x + 4, y + 20, 1, 2);
     }
     
-    static drawPlayerPortrait(graphics) {
+    static drawPlayerPortrait(graphics, gender = 'male') {
         // Jaguar portrait
-        const goldFur = 0xFFB84D;
-        const spotColor = 0x2C1810;
+        let goldFur, spotColor;
         const white = 0xFFFFFF;
         const pink = 0xFF9999;
+        
+        if (gender === 'female') {
+            goldFur = 0x1a1a1a;
+            spotColor = 0x000000;
+        } else {
+            goldFur = 0xFFB84D;
+            spotColor = 0x2C1810;
+        }
         
         // Background (jungle green)
         graphics.fillStyle(0x2F4F2F, 1);
