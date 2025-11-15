@@ -1064,6 +1064,12 @@ function switchCharacter(gender) {
         }
     }
     
+    // Update character name
+    const characterNameDiv = document.getElementById('character-name');
+    if (characterNameDiv) {
+        characterNameDiv.textContent = gender === 'male' ? 'Javi' : 'Juanita';
+    }
+    
     // Update portrait
     updatePortrait();
 }
