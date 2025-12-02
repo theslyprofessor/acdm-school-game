@@ -1,0 +1,25 @@
+# .coderabbit.yaml - ACDM School Game
+language: en-US
+
+reviews:
+  auto_review:
+    enabled: true
+  drafts: false
+  request_changes_workflow: false
+
+path_filters:
+  - "!**/.git/**"
+  - "!**/*.tar.gz"
+  - "!**/*.pdf"
+  - "!**/assets/**"
+
+instructions: |
+  This is an educational HTML/CSS/JavaScript game for students.
+  Focus on:
+  - Game logic correctness
+  - Browser compatibility issues
+  - Accessibility for educational use
+  - Security (XSS, input validation)
+  Skip:
+  - Advanced framework suggestions (vanilla JS is intentional)
+  - Style opinions on CSS
